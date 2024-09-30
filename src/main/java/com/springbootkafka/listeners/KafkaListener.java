@@ -1,12 +1,13 @@
 package com.springbootkafka.listeners;
 
+import com.springbootkafka.config.KafkaTopicConfig;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaListener {
 
     @org.springframework.kafka.annotation.KafkaListener(
-            topics = "demo-topic",
+            topics = KafkaTopicConfig.TOPIC_NAME,
             groupId = "groupId"
     )
     void listener(String data) {

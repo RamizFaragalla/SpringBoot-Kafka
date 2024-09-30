@@ -1,5 +1,6 @@
 package com.springbootkafka.controllers;
 
+import com.springbootkafka.config.KafkaTopicConfig;
 import com.springbootkafka.dtos.MessageDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class MessageController {
 
     @PostMapping
     public ResponseEntity<Void> publish(@RequestBody MessageDto messageDto) {
-        kafkaTemplate.send("demo-topic", messageDto.message());
+        kafkaTemplate.send(KafkaTopicConfig.TOPIC_NAME, messageDto.message());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
